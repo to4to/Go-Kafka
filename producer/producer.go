@@ -1,4 +1,5 @@
 package main
 
-
-type Comment struct{}
+type Comment struct {
+	Text string `form:"text" json:"text"`
+}
