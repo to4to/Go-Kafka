@@ -8,4 +8,11 @@ type Comment struct {
 func main() {
 app:=fiber.New();
 api:=app.Group("/api/v1")
+api.Post("/comments",createComment)
+
+app.Listen(":3000")
+}
+
+func createComment(c *fiber.Ctx) error{
+	
 }
