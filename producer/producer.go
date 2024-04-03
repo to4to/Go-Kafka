@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"log"
 
 	"github.com/gofiber/fiber/v2"
@@ -23,8 +24,32 @@ func createComment(c *fiber.Ctx) error {
 
 	if err := c.BodyParser(cmt); err != nil {
 
-
-
 		log.Println(err)
+
+		c.Status(400).JSON(&fiber.Map{
+			"success": false,
+			"message": err,
+		})
+		return err
 	}
+
+	cmtInBytes, err := json.Marshal(cmt)
+
+	PushCommentToQueue("comments",cmtInBytes)
+
+	err=c.JSON(&fiber.Map{
+		"success":true,
+		"message":"Comment pushed Successfully",
+		"comment":cmt,
+	})
+
+
+	if err!=nil{
+		c.Status(500).JSON(&fiber.Map{
+			"success":false,
+			"message":"Error creating product",
+		})
+		return err
+	}
+	return err
 }
