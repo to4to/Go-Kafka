@@ -20,7 +20,7 @@ func main() {
 }
 
 
-func PushCommentToQueue(){}
+func PushCommentToQueue(topic string,message []byte){}
 
 func createComment(c *fiber.Ctx) error {
 	cmt := new(Comment)
