@@ -19,6 +19,9 @@ func main() {
 	app.Listen(":3000")
 }
 
+
+func PushCommentToQueue(){}
+
 func createComment(c *fiber.Ctx) error {
 	cmt := new(Comment)
 
