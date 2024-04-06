@@ -20,7 +20,12 @@ func main() {
 }
 
 
-func PushCommentToQueue(topic string,message []byte){}
+func PushCommentToQueue(topic string,message []byte){
+brokersUrl:=[]string{"localhost:29092"}
+
+
+
+}
 
 func createComment(c *fiber.Ctx) error {
 	cmt := new(Comment)
