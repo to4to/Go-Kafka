@@ -23,6 +23,8 @@ func main() {
 func PushCommentToQueue(topic string,message []byte){
 brokersUrl:=[]string{"localhost:29092"}
 
+producer ,err:=ConnectProducer(brokersUrl)
+
 
 
 }
