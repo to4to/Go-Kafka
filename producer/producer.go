@@ -19,7 +19,10 @@ func main() {
 	app.Listen(":3000")
 }
 
-func ConnectProducer(brokersUrl string)(srama.SyncProducer,error){}
+func ConnectProducer(brokersUrl string)(srama.SyncProducer,error){
+	config:=sarama.NewConfig()
+	config.Pr
+}
 
 
 
