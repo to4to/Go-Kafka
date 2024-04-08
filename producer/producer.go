@@ -19,6 +19,9 @@ func main() {
 	app.Listen(":3000")
 }
 
+func ConnectProducer(brokersUrl string)(srama.SyncProducer,error){}
+
+
 
 func PushCommentToQueue(topic string,message []byte){
 brokersUrl:=[]string{"localhost:29092"}
