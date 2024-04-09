@@ -2,9 +2,10 @@ module github.com/to4to/go_kafka
 
 go 1.21.1
 
+require github.com/gofiber/fiber/v2 v2.52.4
+
 require (
 	github.com/andybalholm/brotli v1.1.0 // indirect
-	github.com/gofiber/fiber/v2 v2.52.4 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/klauspost/compress v1.17.7 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
