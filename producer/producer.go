@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"log"
 
+	"github.com/IBM/sarama"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -19,19 +20,16 @@ func main() {
 	app.Listen(":3000")
 }
 
-func ConnectProducer(brokersUrl string)(srama.SyncProducer,error){
-	config:=sarama.NewConfig()
-	config.Pr
+func ConnectProducer(brokersUrl string) (sarama.SyncProducer, error) {
+	config := sarama.NewConfig()
+	config.Producer.Return.Successs = true
+	config.Producer.RequiredAcks = sarama.WaitForAll
 }
 
+func PushCommentToQueue(topic string, message []byte) {
+	brokersUrl := []string{"localhost:29092"}
 
-
-func PushCommentToQueue(topic string,message []byte){
-brokersUrl:=[]string{"localhost:29092"}
-
-producer ,err:=ConnectProducer(brokersUrl)
-
-
+	producer, err := ConnectProducer(brokersUrl)
 
 }
 
@@ -51,19 +49,18 @@ func createComment(c *fiber.Ctx) error {
 
 	cmtInBytes, err := json.Marshal(cmt)
 
-	PushCommentToQueue("comments",cmtInBytes)
+	PushCommentToQueue("comments", cmtInBytes)
 
-	err=c.JSON(&fiber.Map{
-		"success":true,
-		"message":"Comment pushed Successfully",
-		"comment":cmt,
+	err = c.JSON(&fiber.Map{
+		"success": true,
+		"message": "Comment pushed Successfully",
+		"comment": cmt,
 	})
 
-
-	if err!=nil{
+	if err != nil {
 		c.Status(500).JSON(&fiber.Map{
-			"success":false,
-			"message":"Error creating product",
+			"success": false,
+			"message": "Error creating product",
 		})
 		return err
 	}
