@@ -24,6 +24,7 @@ func ConnectProducer(brokersUrl string) (sarama.SyncProducer, error) {
 	config := sarama.NewConfig()
 	config.Producer.Return.Successs = true
 	config.Producer.RequiredAcks = sarama.WaitForAll
+	config.Producer.Retry.Max=5
 }
 
 func PushCommentToQueue(topic string, message []byte) {
@@ -34,6 +35,7 @@ func PushCommentToQueue(topic string, message []byte) {
 }
 
 func createComment(c *fiber.Ctx) error {
+	
 	cmt := new(Comment)
 
 	if err := c.BodyParser(cmt); err != nil {
