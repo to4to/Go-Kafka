@@ -25,6 +25,13 @@ func ConnectProducer(brokersUrl string) (sarama.SyncProducer, error) {
 	config.Producer.Return.Successs = true
 	config.Producer.RequiredAcks = sarama.WaitForAll
 	config.Producer.Retry.Max=5
+
+	conn,err:=sarama.NewSyncProducer(brokersUrl,config)
+	if err!=nil{
+		return nil,err
+	}
+
+	return conn,nil
 }
 
 func PushCommentToQueue(topic string, message []byte) {
