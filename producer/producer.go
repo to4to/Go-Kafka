@@ -24,25 +24,29 @@ func ConnectProducer(brokersUrl string) (sarama.SyncProducer, error) {
 	config := sarama.NewConfig()
 	config.Producer.Return.Successs = true
 	config.Producer.RequiredAcks = sarama.WaitForAll
-	config.Producer.Retry.Max=5
+	config.Producer.Retry.Max = 5
 
-	conn,err:=sarama.NewSyncProducer(brokersUrl,config)
-	if err!=nil{
-		return nil,err
+	conn, err := sarama.NewSyncProducer(brokersUrl, config)
+	if err != nil {
+		return nil, err
 	}
 
-	return conn,nil
-}
+	return conn, nil
 
+}
 func PushCommentToQueue(topic string, message []byte) {
 	brokersUrl := []string{"localhost:29092"}
-
 	producer, err := ConnectProducer(brokersUrl)
+
+if err!=nil{
+
+}
+defer producer.Close()
 
 }
 
 func createComment(c *fiber.Ctx) error {
-	
+
 	cmt := new(Comment)
 
 	if err := c.BodyParser(cmt); err != nil {
