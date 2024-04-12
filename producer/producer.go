@@ -42,6 +42,10 @@ if err!=nil{
 
 }
 defer producer.Close()
+msg:=&sarama.ProducerMessage{
+	Topic:topic,
+	Value:sarama.StringEncoder(message),
+}
 
 }
 
