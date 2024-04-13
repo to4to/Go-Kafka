@@ -47,6 +47,7 @@ msg:=&sarama.ProducerMessage{
 	Value:sarama.StringEncoder(message),
 }
 
+producer.SendMessage(msg)
 }
 
 func createComment(c *fiber.Ctx) error {
