@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 
 	"github.com/IBM/sarama"
@@ -34,7 +35,7 @@ func ConnectProducer(brokersUrl string) (sarama.SyncProducer, error) {
 	return conn, nil
 
 }
-func PushCommentToQueue(topic string, message []byte) {
+func PushCommentToQueue(topic string, message []byte)error {
 	brokersUrl := []string{"localhost:29092"}
 	producer, err := ConnectProducer(brokersUrl[0])
 
@@ -49,7 +50,11 @@ msg:=&sarama.ProducerMessage{
 
 partation,offset,err:= producer.SendMessage(msg)
 
-if err !=nil{}
+if err !=nil{
+	return err
+}
+fmt.Println("Message is Stored in topic(%s)/partation(%d)/offset(%d)\n",topic,partation,offset)
+return nil
 }
 
 func createComment(c *fiber.Ctx) error {
