@@ -7,5 +7,9 @@ package main
 func main(){
 	topic:="comments"
 
-	connectConsumer([]string{"localhost:29092"})
+	worker,err:=connectConsumer([]string{"localhost:29092"})
+
+	if err!=nil{
+		
+	}
 }
