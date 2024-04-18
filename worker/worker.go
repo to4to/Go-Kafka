@@ -10,6 +10,6 @@ func main(){
 	worker,err:=connectConsumer([]string{"localhost:29092"})
 
 	if err!=nil{
-		
+panic(err)
 	}
 }
