@@ -16,5 +16,5 @@ panic(err)
 	}
 
 
-	worker.ConsumePartation(topic,0,sarama.OffsetOldest)
+consumer,err:=	worker.ConsumePartation(topic,0,sarama.OffsetOldest)
 }
