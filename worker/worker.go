@@ -1,6 +1,10 @@
 package main
 
-import "github.com/IBM/sarama"
+import (
+	"fmt"
+
+	"github.com/IBM/sarama"
+)
 
 
 
@@ -21,4 +25,6 @@ consumer,err:=	worker.ConsumePartation(topic,0,sarama.OffsetOldest)
 if err!=nil{
 	panic(err)
 		}
+
+		fmt.Println("Consumer Started")
 }
