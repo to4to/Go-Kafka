@@ -17,4 +17,8 @@ panic(err)
 
 
 consumer,err:=	worker.ConsumePartation(topic,0,sarama.OffsetOldest)
+
+if err!=nil{
+	panic(err)
+		}
 }
