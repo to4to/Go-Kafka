@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os/signal"
 
 	"github.com/IBM/sarama"
 )
@@ -27,4 +28,6 @@ if err!=nil{
 		}
 
 		fmt.Println("Consumer Started")
+		sigchan:=make(chan os.Signal,1)
+		signal.Notify()
 }
