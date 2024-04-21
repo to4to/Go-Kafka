@@ -18,7 +18,7 @@ func main(){
 
 	worker,err:=connectConsumer([]string{"localhost:29092"})
 
-	if err!=nil{
+	if err!=nil{ƒ
 panic(err)
 	}
 
@@ -32,4 +32,13 @@ if err!=nil{
 		fmt.Println("Consumer Started")
 		sigchan:=make(chan os.Signal,1)
 		signal.Notify(sigchan,syscall.SIGINT,syscall.SIGTERM)
+
+		msgCount:=0
+		doneCh:=make(chan struct{})
+
+
+		go func(){
+
+			for{}
+		}
 }
