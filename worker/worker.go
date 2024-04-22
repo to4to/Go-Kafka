@@ -7,6 +7,7 @@ import (
 	"syscall"
 
 	"github.com/IBM/sarama"
+	"golang.org/x/text/cases"
 )
 
 
@@ -41,8 +42,11 @@ if err!=nil{
 
 			for{
 				select{
-				case err:=
+				case err:=<- consumer.Error():
+					fmt.Println(err)
 				}
+			case msg:=<-consumer.Messages()
+
 			}
 		}
 }
