@@ -39,6 +39,10 @@ if err!=nil{
 
 		go func(){
 
-			for{}
+			for{
+				select{
+				case err:=
+				}
+			}
 		}
 }
