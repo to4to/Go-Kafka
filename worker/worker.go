@@ -44,8 +44,10 @@ if err!=nil{
 				select{
 				case err:=<- consumer.Error():
 					fmt.Println(err)
+				case msg:=<-consumer.Messages():
+					msgCount++
+					fmt.Println(msgCount)
 				}
-			case msg:=<-consumer.Messages()
 
 			}
 		}
