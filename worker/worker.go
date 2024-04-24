@@ -46,7 +46,7 @@ if err!=nil{
 					fmt.Println(err)
 				case msg:=<-consumer.Messages():
 					msgCount++
-					fmt.Println("Received Message : %d", msgCount)
+					fmt.Println("Received Message : %d | Topic : %s | Message(%s)n", msgCount,string(msg.Topic),string(msg.Value))
 				}
 
 			}

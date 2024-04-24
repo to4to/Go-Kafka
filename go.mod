@@ -5,6 +5,7 @@ go 1.21.1
 require (
 	github.com/IBM/sarama v1.43.1
 	github.com/gofiber/fiber/v2 v2.52.4
+	golang.org/x/text v0.14.0
 )
 
 require (
