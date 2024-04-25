@@ -47,8 +47,11 @@ if err!=nil{
 				case msg:=<-consumer.Messages():
 					msgCount++
 					fmt.Println("Received Message : %d | Topic : %s | Message(%s)n", msgCount,string(msg.Topic),string(msg.Value))
+				case <-sigchan:
+					fmt.Println("Interuption Detected ")
+					doneCh <-struct{}{}
 				}
 
 			}
-		}
+		}()
 }
